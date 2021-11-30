@@ -72,7 +72,7 @@ export class UsersService {
 
     async deleteUser(reqUser: RequestUser, headers: any) {
         try {
-            await this.userRepository.destroy({where: {email: reqUser.email}});
+            await this.userRepository.destroy({where: {email: reqUser.email}, cascade: true});
         } catch(e) {
             console.log(e);
         }

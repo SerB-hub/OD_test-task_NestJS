@@ -17,17 +17,17 @@ export class UserTag extends Model<UserTag, UserTagCreationAttrs> {
 
     @ApiProperty({example: '11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000', description: 'Уникальный идентификатор пользователя, добавившего тег'})
     @ForeignKey(() => User)
-    @Column({type: DataType.UUID, onDelete: 'CASCADE'})
+    @Column({type: DataType.UUID})
     userUid: string;
 
     @ApiProperty({example: '1', description: 'Уникальный идентификатор тега'})
     @ForeignKey(() => Tag)
-    @Column({type: DataType.INTEGER, onDelete: 'CASCADE'})
+    @Column({type: DataType.INTEGER})
     tagId: string;
 
-    @BelongsTo(() => Tag)
+    @BelongsTo(() => Tag, {onDelete: 'CASCADE'})
     tag: Tag;
 
-    @BelongsTo(() => User)
+    @BelongsTo(() => User, {onDelete: 'CASCADE'})
     user: User
 }

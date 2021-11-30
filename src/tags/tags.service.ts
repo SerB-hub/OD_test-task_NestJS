@@ -118,7 +118,7 @@ export class TagsService {
                 HttpStatus.FORBIDDEN);
         }
 
-        await tag.destroy()
+        await this.tagRepository.destroy({where: {id: tag.id}, cascade: true});
     }
 
     async getTagsById(userTagsDto: AddUserTagsDto) {

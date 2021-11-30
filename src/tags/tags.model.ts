@@ -23,7 +23,7 @@ export class Tag extends Model<Tag, TagCreationAttrs> {
     // имеют разные имена
     @ApiProperty({example: '11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000', description: 'Уникальный идентификатор создателя тега'})
     @ForeignKey(() => User)
-    @Column({type: DataType.UUID, onDelete: 'CASCADE'})
+    @Column({type: DataType.UUID})
     creatorUid: string;
 
     @ApiProperty({example: 'Summer', description: 'Имя тега'})
@@ -35,7 +35,7 @@ export class Tag extends Model<Tag, TagCreationAttrs> {
     @Column({type: DataType.INTEGER, allowNull: false})
     sortOrder: number;
 
-    @BelongsTo(() => User)
+    @BelongsTo(() => User, {onDelete: 'CASCADE'})
     creator: User;
 
     @HasMany(() => UserTag)
